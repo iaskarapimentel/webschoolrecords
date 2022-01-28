@@ -15,7 +15,8 @@ import java.util.List;
 @Controller
 public class TeacherController {
 
-// Spring sees that this is a dependency so it automatically injects it without us having to pass the controller  @Autowired
+// Spring sees that this is a dependency so it automatically injects it without us having to pass the controller
+ @Autowired
   private TeacherRepository teacherrepository;
 
 //  All the time that you write in the browser '/teachers' will come to this action and load this page
@@ -38,6 +39,5 @@ public class TeacherController {
   public String newRoute(){
     return "teachers/new";
   }
-
 
 }
