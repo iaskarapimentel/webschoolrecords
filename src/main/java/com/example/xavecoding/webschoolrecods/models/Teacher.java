@@ -58,4 +58,14 @@ public class Teacher {
   public void setStatus(StatusTeacher status) {
     this.status = status;
   }
+
+  @Override
+  public String toString() {
+    return "Teacher{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", salary=" + salary +
+        ", status=" + status +
+        '}';
+  }
 }

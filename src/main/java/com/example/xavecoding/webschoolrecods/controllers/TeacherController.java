@@ -1,11 +1,13 @@
 package com.example.xavecoding.webschoolrecods.controllers;
 
+import com.example.xavecoding.webschoolrecods.dto.NewTeacherRequisition;
 import com.example.xavecoding.webschoolrecods.models.StatusTeacher;
 import com.example.xavecoding.webschoolrecods.models.Teacher;
 import com.example.xavecoding.webschoolrecods.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
@@ -36,8 +38,17 @@ public class TeacherController {
 //  Intention - shows a form to create new teacher
 //  action where will receive
   @GetMapping("/teacher/new")
-  public String newRoute(){
-    return "teachers/new";
+  public ModelAndView newRoute(){
+    ModelAndView mv = new ModelAndView("teachers/new");
+    mv.addObject("statusTeacher", StatusTeacher.values());
+    return mv;
+  }
+
+  @PostMapping("/teachers")
+  public String create(NewTeacherRequisition requisitions) {
+    Teacher teacher =  requisitions.toTeacher();
+    this.teacherrepository.save(teacher);
+    return "redirect:/teachers";
   }
 
 }
