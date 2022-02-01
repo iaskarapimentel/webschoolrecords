@@ -20,22 +20,22 @@
 
     <div class="container">
         <div class="row">
-            <form action="/teachers" method="POST">
+            <form action="/teachers" th:object="${newTeacherRequisition}"  method="POST">
                 <div class="mb-3">
                     <label class="form-label">Teacher's Name</label>
-<!--            no atributo name= "esse nome tem que ser exatamente igual ao respectivo atrubuto de uma classe que a gente quer instanciar   "       -->
-                    <input class="form-control" type="text" name="name">
-                    <div></div>
+<!--            no atributo name= "esse nome tem que ser exatamente igual ao respectivo atributo da classe que a gente quer instanciar   "       -->
+                    <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{name}">
+                    <div class="invalid-feedback" th:errors="*{name}"></div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Salary</label>
-                    <input class="form-control" type="text" name="salary">
-                    <div></div>
+                    <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{salary}">
+                    <div class="invalid-feedback" th:errors="*{salary}"></div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Status</label>
-                    <select class="form-select" name="status">
-                        <option th:each="status : ${statusTeacher}"
+                    <select class="form-select" th:field="*{status}">
+                        <option th:each="status : ${selectStatusTeacher}"
                         th:value="${status}" th:text="${status}">
                         </option>
                     </select>
